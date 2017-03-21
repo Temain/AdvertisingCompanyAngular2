@@ -244,3 +244,6 @@ _Pvt_Extensions
 
 # FAKE - F# Make
 .fake/
+
+# VISUAL STUDIO CODE
+.vscode
