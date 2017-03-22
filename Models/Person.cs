@@ -70,7 +70,7 @@ namespace WebApplicationBasic.Models
         /// <summary>
         /// Ответственным лицом каких клиентов является данное физ. лицо
         /// </summary>
-        //public ICollection<Client> Clients { get; set; }
+        public ICollection<Client> Clients { get; set; }
 
 
         /// <summary>

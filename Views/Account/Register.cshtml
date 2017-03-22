@@ -1,0 +1,44 @@
+﻿@model RegisterViewModel
+@{
+    ViewData["Title"] = "Регистрация";
+    Layout = "_LayoutForum";
+}
+
+<div class="ui raised very padded text container" style="margin-top: 10em;">
+    <h1 class="ui header centered">Регистрация</h1>
+
+    <form asp-controller="Account" asp-action="Register" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="ui large form validate-me" role="form">
+        <div class="ui stacked">
+            <div class="field">
+                <div class="ui left icon input">
+                    <i class="user icon"></i>
+                    <input asp-for="UserName" placeholder="Имя пользователя" />
+                </div>
+            </div>
+            <div class="field">
+                <div class="ui left icon input">
+                    <i class="mail icon"></i>
+                    <input asp-for="Email" placeholder="Адрес электронной почты" />
+                </div>
+            </div>
+            <div class="field">
+                <div class="ui left icon input">
+                    <i class="lock icon"></i>
+                    <input asp-for="Password" type="password" placeholder="Пароль" />
+                </div>
+            </div>
+            <div class="field">
+                <div class="ui left icon input">
+                    <i class="lock icon"></i>
+                    <input asp-for="ConfirmPassword" type="password" placeholder="Подтверждение пароля" />
+                </div>
+            </div>
+            <input type="submit" class="ui large blue submit button" value="Отправить" />
+            <div asp-validation-summary="All" class="ui error message"></div>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

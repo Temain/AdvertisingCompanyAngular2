@@ -8,6 +8,8 @@ using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
 using WebApplicationBasic.DataAccess;
 using WebApplicationBasic.Models;
+using WebApplicationBasic.Services;
+using Microsoft.AspNetCore.Routing;
 
 namespace WebApplicationBasic
 {
@@ -37,6 +39,11 @@ namespace WebApplicationBasic
                 .AddDefaultTokenProviders();
 
             services.AddMvc();
+
+            services.AddTransient<IEmailSender, AuthMessageSender>();
+            services.AddTransient<ISmsSender, AuthMessageSender>();
+
+            services.Configure<RouteOptions>(options => options.LowercaseUrls = true);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -58,6 +65,8 @@ namespace WebApplicationBasic
             }
 
             app.UseStaticFiles();
+
+            app.UseIdentity();
 
             app.UseMvc(routes =>
             {
